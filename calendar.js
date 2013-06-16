@@ -1,5 +1,3 @@
-console.log("ok");
-
 function Calendar(el, country, inputForm, date ){
 
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'];
@@ -24,8 +22,8 @@ function Calendar(el, country, inputForm, date ){
 
 	function init(inputDate){
 
-		console.log("init el = " + that.container);
-		console.log("init inputForm = " + that.inputFormId);
+		//console.log("init el = " + that.container);
+		//console.log("init inputForm = " + that.inputFormId);
 		// get holidays....
 		
 		that.calDate  = (that.inputDate)? that.inputDate: new Date();
@@ -33,10 +31,10 @@ function Calendar(el, country, inputForm, date ){
 		currYear = date.getFullYear();
 		currMonth = date.getMonth();
 		that.daysBewteenFirsts  = getDaysBetweenFirsts(date);
-		console.log("days since the first of the year = " + that.daysBewteenFirsts);
+		//console.log("days since the first of the year = " + that.daysBewteenFirsts);
 		getDayOfFirstOfMonth(date);
 		getDateOfLastOfMonth(date);
-		console.log("maxDaysInMonth" + maxDaysInMonth);
+		//console.log("maxDaysInMonth" + maxDaysInMonth);
 		getHolidays();
 	}
 
@@ -51,8 +49,8 @@ function Calendar(el, country, inputForm, date ){
 		var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 		var firstDate = new Date(date.getYear(),00,01);
 		var secondDate = new Date(date.getYear(), date.getMonth(), 1);
-		console.log("first of the year " +  secondDate);
-		console.log("date " + date);
+		//console.log("first of the year " +  secondDate);
+		//console.log("date " + date);
 		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
 		return diffDays;
 	}
@@ -74,12 +72,12 @@ function Calendar(el, country, inputForm, date ){
 
 	function construct(){
 
-		console.log("createTable " + date);
+		//console.log("createTable " + date);
 
 		var table = document.createElement('table');
 		table.style.border="3px solid black";
 		table.style.borderCollapse = "collapse";
-		console.log("construct: el = " + that.container.id);
+		//console.log("construct: el = " + that.container.id);
 		document.getElementById(that.container).appendChild(table);
 		table.onclick = onCellClick;
 		topRow = table.insertRow(0);
@@ -116,15 +114,15 @@ function Calendar(el, country, inputForm, date ){
 		dblRight.className = "heading";
 		addButton(dblRight, "addYear", ">>", addYear);
 
-		console.log("inMonth is " + inMonth);
+		//console.log("inMonth is " + inMonth);
 		while (inMonth) addRow(table);
 
-		console.log(topRow);
+		//console.log(topRow);
 	}
 
 
 	function addRow(table){
-		console.log("adding row");
+		//console.log("adding row");
 		var numRows = table.getElementsByTagName('tr').length;
 		var newRow = table.insertRow(numRows);
 		for (var i = 0;  i < 7; i++){
@@ -143,10 +141,11 @@ function Calendar(el, country, inputForm, date ){
 
 			newCell.innerHTML = currCellDate;
 			newCell.style.cursor = "pointer";
-			console.log("days between firsts = " + that.daysBewteenFirsts);
+			//console.log("days between firsts = " + that.daysBewteenFirsts);
 			var totalDaysSinceJanOne = that.daysBewteenFirsts + currCellDate-1; // because we don't want to count first of the month twice
-			console.log("It is the " + currCellDate + " and the days between first is = " + that.daysBewteenFirsts + " and the totals days is " + totalDaysSinceJanOne);
-			console.log (totalDaysSinceJanOne % 3);
+			//console.log("It is the " + currCellDate + " and the days between first is = " + that.daysBewteenFirsts + " and the totals days is " + totalDaysSinceJanOne);
+			//console.log (totalDaysSinceJanOne % 3);
+			
 			// every third day, beginngin with the first of the year is light green, except weekends
 			if (cellNum !== 0 && cellNum !== 6 && (totalDaysSinceJanOne % 3 === 0)){
 				newCell.style.backgroundColor = "#98fb98";
@@ -259,7 +258,7 @@ function Calendar(el, country, inputForm, date ){
 		var cell = e.target || e.src;
 		if(cell.innerHTML != "" && cell.className != "heading"){
 			cell.style.backgroundColor="yellow";
-			console.log("onCellClick inputForm = " + that.inputFormId );
+			//console.log("onCellClick inputForm = " + that.inputFormId );
 			if( that.inputFormId && document.getElementById(that.inputFormId).value != ""){
 				console.log("input value " + document.getElementById(that.inputFormId).value);
 				cell.innerHTML = document.getElementById(that.inputFormId).value;
@@ -281,7 +280,7 @@ function Calendar(el, country, inputForm, date ){
 	}
 	
 	Calendar.prototype.loadData = function(data){
-		console.log("holidays loaded " + data);
+		//console.log("holidays loaded " + data);
 		holidays = data.holidays;
 		worldHolidays = data["holidays-world"];
 		beginBuild();
