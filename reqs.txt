@@ -1,0 +1,33 @@
+
+Write a javascript object that can be instantiated into any given page (even multiple times) without disturbing its global scope (besides the mentioned instance(s) of course), and that will do the following:
+
+1- Render a table based monthly calendar in a container passed to the constructor by id
+2- Below or above the table you must have the usual calendar navigation controls, "<<", "<", "Year", "Month", ">" and ">>"
+3- The calendar must work from 1900 to 2015
+4- On instantiation, you must also pass the country code (US, CA, World), this will be used later and you should be able to also control it from a separate SELECT control affecting the entire calendar. The country control will be off-object and passed to the constructor.
+5- By default the object will load with today's date marked in bold. Optionally a "date" argument can be passed to the constructor to override today's date.
+6- Saturdays and Sundays must have light gray background
+7- One every three days starting the first day of the year, must have light green background, except for weekends and holidays.
+8- Holidays must have light red background, and must display the holiday name as a tooltip
+9- When a date is clicked, it is highlighted and if the constructor was passed the id or object of a FORM INPUT, then it must update its value. Additionally a second input can be passed to the constructor in which case the holiday name is stored in it.
+10- Some visual effect has to happen when the mouse is over a date cell. If you have time make it look great in a cross browser fashion. 
+11- If you have time you are allowed to use any UI library to make all this happen in a modal window upon a form date input is clicked. 
+
+Important notes: 
+
+- You are NOT allowed to use libraries or frameworks, just pure JS for everything except for point 11.
+
+- To obtain a list of holidays you MUST use an asych call to an API located at 
+      http://web1.pdapi.com/cs/JSI/internal/tests/test-recruit-api.php
+      
+      Required parameters:
+            method      getHolidays
+            year        The year ;)
+            month       The month duh!
+            country     2 letters code: US,CA,XX (meaning world)
+      Optional parameters:
+            protocol    json,jsonp,serialize
+            callid      Numeric id of your call to be used for single callback approach
+            callback    Name of the callback function used if it applies to the protocol in use
+
+      You should be able to easily find out the data structures returned

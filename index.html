@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calendar</title>
+	</head>
+<body>
+	<form>
+		<input type="text" id="inputbox"  placeholder="value for day">
+		<select id="country">
+			<option>US</option>
+			<option>CA</option>
+			<option>XX</option>
+		</select>
+	</form>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<script type="text/javascript" src="calendar.js"></script>
+	<script>
+		var calendar = new Calendar("div1", country.value ,"inputbox", new Date(2013,1,1));
+		//var calendar2 = new Calendar("div2", country.value , "inputbox");
+	</script>
+</body>
